@@ -1,4 +1,5 @@
 import nxbt
+from random import randint
 
 closeGame = """
 HOME 0.1s
@@ -13,6 +14,14 @@ A 0.1s
 2.0s
 B 0.1s
 """
+
+def randomColor():
+
+    return [
+        randint(0, 255),
+        randint(0, 255),
+        randint(0, 255),
+    ]
 
 if __name__ == "__main__":
     # Start NXBT
@@ -29,9 +38,9 @@ if __name__ == "__main__":
         print("Setting up for first time")
         index = nx.create_controller(
             nxbt.PRO_CONTROLLER,
-            adapter_path=adapters[i],
-            colour_body=random_colour(),
-            colour_buttons=random_colour())
+            adapter_path=adapters[0],
+            colour_body=randomColor(),
+            colour_buttons=randomColor())
         # Wait for connection to controller instance
         print("Connecting...")
         nx.wait_for_connection(index)
@@ -42,12 +51,12 @@ if __name__ == "__main__":
         index = nx.create_controller(
             nxbt.PRO_CONTROLLER,
             reconnect_address=nx.get_switch_addresses(),
-            colour_body=random_colour(),
-            colour_buttons=random_colour())
+            colour_body=randomColor(),
+            colour_buttons=randomColor())
         # Wait for connection to last controller instance
         print("Connecting...")
         nx.wait_for_connection(index)
         print("Connected")
 
     # Start game macro
-    nx.macro(controllerIndex, startGame)
+    nx.macro(index, startGame)
