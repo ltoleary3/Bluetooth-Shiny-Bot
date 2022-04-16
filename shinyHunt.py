@@ -65,14 +65,11 @@ if __name__ == "__main__":
         print("Connected")
 
     # Go to home menu
-    nx.press_buttons(controller, [nxbt.Buttons.HOME])
-    sleep(0.5)
+    nx.press_buttons(controller, [nxbt.Buttons.HOME], 0.25, 1)
     # Start game macro
     print("Starting macro")
-    nx.press_buttons(controller, [nxbt.Buttons.A])
-    sleep(1)
-    nx.press_buttons(controller, [nxbt.Buttons.B])
-    sleep(1)
+    nx.press_buttons(controller, [nxbt.Buttons.A], 0.25, 1)
+    nx.press_buttons(controller, [nxbt.Buttons.B], 0.25, 1)
     print("Macro finished. Removing controller")
     nx.remove_controller(controller)
     print("Controller removed")
