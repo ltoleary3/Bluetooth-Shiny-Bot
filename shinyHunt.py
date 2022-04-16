@@ -23,12 +23,19 @@ if __name__ == "__main__":
     adapters = nx.get_available_adapters()
     controllerIndex = []
 
-    # Create Pro Controller instance from all bluetooth adapters
-    print("Creating Pro Controller instances")
-    for i in range (0,len(adapters)):
+    # Create Pro Controller instance
+    print("Creating Pro Controller instance")
+    if (len(nx.get_switch_addresses()) < 1):
+        # No previous controller instance. Creating new ones
+        for i in range (0,len(adapters)):
+            index = nx.create_controller(
+                nxbt.PRO_CONTROLLER,
+                adapter_path=adapters[i])
+            controllerIndex.append(index)
+    else:
         index = nx.create_controller(
             nxbt.PRO_CONTROLLER,
-            adapter_path=adapters[i])
+            reconnect_address=nx.get_switch_addresses())
         controllerIndex.append(index)
 
     # Wait for connection to last controller instance
