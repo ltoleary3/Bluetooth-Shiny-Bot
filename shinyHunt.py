@@ -1,5 +1,6 @@
 import nxbt
 from random import randint
+from time import sleep
 
 closeGame = """
 HOME 0.1s
@@ -60,7 +61,9 @@ if __name__ == "__main__":
 
     # Start game macro
     print("Starting macro")
-    nx.macro(controller, startGame)
+    macroID = nx.macro(controller, startGame)
+    while macroID not in nx.state[controller]["finished_macros"]:
+        sleep(1)
     print("Macro finished. Removing controller")
     nx.remove_controller(controller)
     print("Controller removed")
