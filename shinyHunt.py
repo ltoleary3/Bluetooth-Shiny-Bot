@@ -1,4 +1,4 @@
-import nbxt
+import nxbt
 
 closeGame = """
 HOME 0.1s
