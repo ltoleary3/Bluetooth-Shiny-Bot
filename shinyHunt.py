@@ -63,6 +63,7 @@ if __name__ == "__main__":
     print("Starting macro")
     macroID = nx.macro(controller, startGame)
     while macroID not in nx.state[controller]["finished_macros"]:
+        print("Macro Running...")
         sleep(1)
     print("Macro finished. Removing controller")
     nx.remove_controller(controller)
