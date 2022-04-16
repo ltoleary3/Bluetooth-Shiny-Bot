@@ -27,12 +27,15 @@ if __name__ == "__main__":
     print("Creating Pro Controller instance")
     if (len(nx.get_switch_addresses()) < 1):
         # No previous controller instance. Creating new ones
+        print("Setting up for first time")
         for i in range (0,len(adapters)):
             index = nx.create_controller(
                 nxbt.PRO_CONTROLLER,
                 adapter_path=adapters[i])
             controllerIndex.append(index)
     else:
+        # Get previous controller instance
+        print("Getting previous controller instance")
         index = nx.create_controller(
             nxbt.PRO_CONTROLLER,
             reconnect_address=nx.get_switch_addresses())
