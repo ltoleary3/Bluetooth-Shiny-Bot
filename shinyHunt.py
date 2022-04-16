@@ -36,27 +36,31 @@ if __name__ == "__main__":
     if (len(nx.get_switch_addresses()) < 1):
         # No previous controller instance. Creating new ones
         print("Setting up for first time")
-        index = nx.create_controller(
+        controller = nx.create_controller(
             nxbt.PRO_CONTROLLER,
             adapter_path=adapters[0],
             colour_body=randomColor(),
             colour_buttons=randomColor())
         # Wait for connection to controller instance
         print("Connecting...")
-        nx.wait_for_connection(index)
+        nx.wait_for_connection(controller)
         print("Connected")
     else:
         # Get previous controller instance
         print("Getting previous controller instance")
-        index = nx.create_controller(
+        controller = nx.create_controller(
             nxbt.PRO_CONTROLLER,
             reconnect_address=nx.get_switch_addresses(),
             colour_body=randomColor(),
             colour_buttons=randomColor())
         # Wait for connection to last controller instance
         print("Connecting...")
-        nx.wait_for_connection(index)
+        nx.wait_for_connection(controller)
         print("Connected")
 
     # Start game macro
-    nx.macro(index, startGame)
+    print("Starting macro")
+    nx.macro(controller, startGame)
+    print("Macro finished. Removing controller")
+    nx.remove_controller(controller)
+    print("Controller removed")
