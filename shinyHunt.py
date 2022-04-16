@@ -3,7 +3,7 @@ from random import randint
 from time import sleep
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-u', '--updates', required=False, default=False, type=bool,
+parser.add_argument('-u', '--updates', required=False, default=False, type=bool, action='store_true',
                     help="""Signifies that an update for the game is available. Will change how the game launches to prevent the game from updating""")
 args = parser.parse_args()
 
