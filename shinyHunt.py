@@ -41,6 +41,7 @@ if __name__ == "__main__":
     if (len(nx.get_switch_addresses()) < 1):
         # No previous controller instance. Creating new ones
         print("Setting up for first time")
+        input("Please navigate to the 'Change Grip/Order' menu, then press Enter to continue...")
         controller = nx.create_controller(
             nxbt.PRO_CONTROLLER,
             adapter_path=adapters[0],
@@ -65,7 +66,8 @@ if __name__ == "__main__":
 
     # Start game macro
     print("Starting macro")
-    macroID = nx.macro(controller, startGame)
+    nx.macro(controller, startGame)
+    sleep(1)
     print("Macro finished. Removing controller")
     nx.remove_controller(controller)
     print("Controller removed")
