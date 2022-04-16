@@ -27,7 +27,7 @@ if __name__ == "__main__":
     print("Creating Pro Controller instances")
     for i in range (0,len(adapters)):
         index = nx.create_controller(
-            nxbt.PRO_CCONTROLLER,
+            nxbt.PRO_CONTROLLER,
             adapter_path=adapters[i])
         controllerIndex.append(index)
 
