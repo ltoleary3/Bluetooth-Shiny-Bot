@@ -4,18 +4,18 @@ from time import sleep
 
 closeGame = """
 1.0s
-HOME 0.25s
+HOME 0.5s
 0.5s
-X 0.25s
+X 0.5s
 0.5s
-A 0.25s
+A 0.5s
 """
 
 startGame = """
 1.0s
-A 0.25s
+A 0.5s
 2.0s
-B 0.25s
+B 0.5s
 """
 
 def randomColor():
@@ -64,9 +64,6 @@ if __name__ == "__main__":
     # Start game macro
     print("Starting macro")
     macroID = nx.macro(controller, startGame)
-    while macroID not in nx.state[controller]["finished_macros"]:
-        print("Macro Running...")
-        sleep(1)
     print("Macro finished. Removing controller")
     nx.remove_controller(controller)
     print("Controller removed")
