@@ -1,6 +1,11 @@
-import nxbt
+import nxbt, argparse
 from random import randint
 from time import sleep
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-u', '--updates', required=False, default=False, type=bool,
+                    help="""Signifies that an update for the game is available. Will change how the game launches to prevent the game from updating""")
+args = parser.parse_args()
 
 closeGame = """
 1.0s
@@ -27,6 +32,22 @@ def randomColor():
         randint(0, 255),
         randint(0, 255),
     ]
+
+def startGame(update = False):
+    nx.press_buttons(controller, [nxbt.Buttons.A], 0.25, 0.5)
+    if update:
+        nx.press_buttons(controller, [nxbt.Buttons.DPAD_UP], 0.25, 0.5)
+        nx.press_buttons(controller, [nxbt.Buttons.A], 0.25, 10)
+        nx.press_buttons(controller, [nxbt.Buttons.A], 0.25, 1)
+        nx.press_buttons(controller, [nxbt.Buttons.A], 0.25, 0.5)
+        #nx.press_buttons(controller, [nxbt.Buttons.DPAD_UP], 0.25, 0.5)
+        #nx.press_buttons(controller, [nxbt.Buttons.A], 0.25, 0.5)
+
+def closeGame():
+    nx.press_buttons(controller, [nxbt.Buttons.HOME], 0.25, 0.5)
+    nx.press_buttons(controller, [nxbt.Buttons.X], 0.25, 0.5)
+    nx.press_buttons(controller, [nxbt.Buttons.A], 0.25, 0.5)
+
 
 if __name__ == "__main__":
     # Start NXBT
@@ -66,10 +87,14 @@ if __name__ == "__main__":
 
     # Go to home menu
     nx.press_buttons(controller, [nxbt.Buttons.HOME], 0.25, 1)
-    # Start game macro
-    print("Starting macro")
-    nx.press_buttons(controller, [nxbt.Buttons.A], 0.25, 1)
-    nx.press_buttons(controller, [nxbt.Buttons.B], 0.25, 1)
+    # Start game function
+    if args.update:
+        startGame(True)
+    else:
+        startGame()
+    # Close game function
+    closeGame()
+    
     print("Macro finished. Removing controller")
     nx.remove_controller(controller)
     print("Controller removed")
