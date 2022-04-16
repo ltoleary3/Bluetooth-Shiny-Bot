@@ -3,17 +3,19 @@ from random import randint
 from time import sleep
 
 closeGame = """
-HOME 0.1s
+1.0s
+HOME 0.25s
 0.5s
-X 0.1s
+X 0.25s
 0.5s
-A 0.1s
+A 0.25s
 """
 
 startGame = """
-A 0.1s
+1.0s
+A 0.25s
 2.0s
-B 0.1s
+B 0.25s
 """
 
 def randomColor():
