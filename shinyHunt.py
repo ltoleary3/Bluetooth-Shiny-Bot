@@ -23,7 +23,7 @@ def startMacro(controller, macroName):
             print("An error occurred while running the demo:")
             print(state['errors'])
             exit(1)
-        sleep(1.0)
+        sleep(0.25)
 
 startGameUpdate = """
 1.0s
