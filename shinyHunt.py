@@ -7,6 +7,27 @@ parser.add_argument('-u', '--update', required=False, default=False, type=bool,
                     help="""Signifies that an update for the game is available. Will change how the game launches to prevent the game from updating""")
 args = parser.parse_args()
 
+startMacroUpdate = """
+A 0.25s
+0.5s
+DPAD_UP 0.25s
+0.5s
+A 0.25s
+20s
+A 0.25s
+1s
+A 0.25s
+0.5s
+"""
+startMacro = """
+A 0.25s
+20s
+A 0.25s
+1s
+A 0.25s
+0.5s
+"""
+
 
 def randomColor():
 
@@ -17,14 +38,15 @@ def randomColor():
     ]
 
 def startGame(update = False):
-    nx.press_buttons(controller, [nxbt.Buttons.A], 0.25, 0.5)
     if update:
-        nx.press_buttons(controller, [nxbt.Buttons.DPAD_UP], 0.25, 0.5)
-        nx.press_buttons(controller, [nxbt.Buttons.A], 0.25, 20)
-        nx.press_buttons(controller, [nxbt.Buttons.A], 0.25, 1)
         nx.press_buttons(controller, [nxbt.Buttons.A], 0.25, 0.5)
-        #nx.press_buttons(controller, [nxbt.Buttons.DPAD_UP], 0.25, 0.5)
-        #nx.press_buttons(controller, [nxbt.Buttons.A], 0.25, 0.5)
+        nx.press_buttons(controller, [nxbt.Buttons.DPAD_UP], 0.25, 0.5)
+
+    nx.press_buttons(controller, [nxbt.Buttons.A], 0.25, 20)
+    nx.press_buttons(controller, [nxbt.Buttons.A], 0.25, 1)
+    nx.press_buttons(controller, [nxbt.Buttons.A], 0.25, 0.5)
+    #nx.press_buttons(controller, [nxbt.Buttons.DPAD_UP], 0.25, 0.5)
+    #nx.press_buttons(controller, [nxbt.Buttons.A], 0.25, 0.5)
 
 def closeGame():
     nx.press_buttons(controller, [nxbt.Buttons.HOME], 0.25, 0.5)
@@ -72,9 +94,19 @@ if __name__ == "__main__":
     nx.press_buttons(controller, [nxbt.Buttons.HOME], 0.25, 1)
     # Start game function
     if args.update:
-        startGame(True)
+        #startGame(True)
+        macro_id = nx.macro(controller, startMacroUpdate, block=False)
     else:
-        startGame()
+        #startGame()
+        macro_id = nx.macro(controller, startMacro, block=False)
+
+    while macro_id not in nx.state[controller]["finished_macros"]:
+        state = nx.state[controller]
+        if state['state'] == 'crashed':
+            print("An error occurred while running the demo:")
+            print(state['errors'])
+            exit(1)
+        sleep(1.0)
     # Close game function
     closeGame()
     
