@@ -7,23 +7,6 @@ parser.add_argument('-u', '--update', required=False, default=False, type=bool,
                     help="""Signifies that an update for the game is available. Will change how the game launches to prevent the game from updating""")
 args = parser.parse_args()
 
-closeGame = """
-1.0s
-HOME 0.25s
-0.5s
-X 0.25s
-0.5s
-A 0.25s
-1.0s
-"""
-
-startGame = """
-1.0s
-A 0.25s
-2.0s
-B 0.25s
-1.0s
-"""
 
 def randomColor():
 
@@ -37,7 +20,7 @@ def startGame(update = False):
     nx.press_buttons(controller, [nxbt.Buttons.A], 0.25, 0.5)
     if update:
         nx.press_buttons(controller, [nxbt.Buttons.DPAD_UP], 0.25, 0.5)
-        nx.press_buttons(controller, [nxbt.Buttons.A], 0.25, 10)
+        nx.press_buttons(controller, [nxbt.Buttons.A], 0.25, 20)
         nx.press_buttons(controller, [nxbt.Buttons.A], 0.25, 1)
         nx.press_buttons(controller, [nxbt.Buttons.A], 0.25, 0.5)
         #nx.press_buttons(controller, [nxbt.Buttons.DPAD_UP], 0.25, 0.5)
