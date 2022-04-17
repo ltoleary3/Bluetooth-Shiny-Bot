@@ -7,30 +7,6 @@ parser.add_argument('-u', '--update', required=False, default=False, type=bool,
                     help="""Signifies that an update for the game is available. Will change how the game launches to prevent the game from updating""")
 args = parser.parse_args()
 
-startMacroUpdate = """
-0.5s
-A 0.25s
-0.5s
-DPAD_UP 0.25s
-0.5s
-A 0.25s
-20s
-A 0.25s
-1s
-A 0.25s
-0.5s
-"""
-startMacro = """
-0.5s
-A 0.25s
-20s
-A 0.25s
-1s
-A 0.25s
-0.5s
-"""
-
-
 def randomColor():
 
     return [
@@ -96,19 +72,10 @@ if __name__ == "__main__":
     nx.press_buttons(controller, [nxbt.Buttons.HOME], 0.25, 1)
     # Start game function
     if args.update:
-        #startGame(True)
-        macro_id = nx.macro(controller, startMacroUpdate, block=False)
+        startGame(True)
     else:
-        #startGame()
-        macro_id = nx.macro(controller, startMacro, block=False)
+        startGame()
 
-    while macro_id not in nx.state[controller]["finished_macros"]:
-        state = nx.state[controller]
-        if state['state'] == 'crashed':
-            print("An error occurred while running the demo:")
-            print(state['errors'])
-            exit(1)
-        sleep(1.0)
     # Close game function
     closeGame()
     
