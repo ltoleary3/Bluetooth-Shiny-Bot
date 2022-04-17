@@ -41,7 +41,7 @@ A 0.25s
 startGame = """
 1.0s
 A 0.25s
-20s
+25s
 A 0.25s
 0.5s
 A 0.25s
