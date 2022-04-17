@@ -8,6 +8,7 @@ parser.add_argument('-u', '--update', required=False, default=False, type=bool,
 args = parser.parse_args()
 
 startMacroUpdate = """
+0.5s
 A 0.25s
 0.5s
 DPAD_UP 0.25s
@@ -20,6 +21,7 @@ A 0.25s
 0.5s
 """
 startMacro = """
+0.5s
 A 0.25s
 20s
 A 0.25s
