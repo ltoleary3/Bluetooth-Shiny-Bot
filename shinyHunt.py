@@ -94,7 +94,7 @@ if __name__ == "__main__":
         print("Connected")
 
     # Go to home menu
-    nx.press_buttons(controller, [nxbt.Buttons.HOME], 0.25, 1)
+    nx.press_buttons(controller, [nxbt.Buttons.HOME], 0.25, 1, True)
     # Start game function
     print("Starting game...")
     if args.update:
