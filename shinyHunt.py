@@ -108,3 +108,4 @@ if __name__ == "__main__":
     print("Closed game. Removing controller")
     nx.remove_controller(controller)
     print("Controller removed")
+    nx.clear_all_macros()
