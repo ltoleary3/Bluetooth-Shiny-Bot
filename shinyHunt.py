@@ -106,6 +106,6 @@ if __name__ == "__main__":
     startMacro(controller, closeGame)
     
     print("Closed game. Removing controller")
+    nx.clear_all_macros()
     nx.remove_controller(controller)
     print("Controller removed")
-    nx.clear_all_macros()
