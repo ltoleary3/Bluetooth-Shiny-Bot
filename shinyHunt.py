@@ -26,7 +26,7 @@ def startMacro(controller, macroName):
         sleep(0.25)
 
 startGameUpdate = """
-1.0s
+5.0s
 A 0.25s
 0.5s
 DPAD_UP 0.25s
@@ -37,18 +37,22 @@ A 0.25s
 0.5s
 A 0.25s
 0.5s
+A 0.25s
+0.5s
 """
 startGame = """
-1.0s
+5.0s
 A 0.25s
 25s
 A 0.25s
 0.5s
 A 0.25s
 0.5s
+A 0.25s
+0.5s
 """
 closeGame = """
-1.0s
+5.0s
 HOME 0.25s
 0.5s
 X 0.25s
