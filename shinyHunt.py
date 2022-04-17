@@ -15,22 +15,47 @@ def randomColor():
         randint(0, 255),
     ]
 
-def startGame(update = False):
-    if update:
-        nx.press_buttons(controller, [nxbt.Buttons.A], 0.25, 0.5)
-        nx.press_buttons(controller, [nxbt.Buttons.DPAD_UP], 0.25, 0.5)
+def startMacro(controller, macroName):
+    macro_id = nx.macro(controller, macroName, block=False)
+    while macro_id not in nx.state[controller]["finished_macros"]:
+        state = nx.state[controller]
+        if state['state'] == 'crashed':
+            print("An error occurred while running the demo:")
+            print(state['errors'])
+            exit(1)
+        sleep(1.0)
 
-    nx.press_buttons(controller, [nxbt.Buttons.A], 0.25, 20)
-    nx.press_buttons(controller, [nxbt.Buttons.A], 0.25, 1)
-    nx.press_buttons(controller, [nxbt.Buttons.A], 0.25, 0.5)
-    #nx.press_buttons(controller, [nxbt.Buttons.DPAD_UP], 0.25, 0.5)
-    #nx.press_buttons(controller, [nxbt.Buttons.A], 0.25, 0.5)
-
-def closeGame():
-    nx.press_buttons(controller, [nxbt.Buttons.HOME], 0.25, 0.5)
-    nx.press_buttons(controller, [nxbt.Buttons.X], 0.25, 0.5)
-    nx.press_buttons(controller, [nxbt.Buttons.A], 0.25, 0.5)
-
+startGameUpdate = """
+1.0s
+A 0.25s
+0.5s
+DPAD_UP 0.25s
+0.5s
+A 0.25s
+20s
+A 0.25s
+0.5s
+A 0.25s
+0.5s
+"""
+startGame = """
+1.0s
+A 0.25s
+20s
+A 0.25s
+0.5s
+A 0.25s
+0.5s
+"""
+closeGame = """
+1.0s
+HOME 0.25s
+0.5s
+X 0.25s
+0.5s
+A 0.25s
+0.5s
+"""
 
 if __name__ == "__main__":
     # Start NXBT
@@ -72,12 +97,12 @@ if __name__ == "__main__":
     nx.press_buttons(controller, [nxbt.Buttons.HOME], 0.25, 1)
     # Start game function
     if args.update:
-        startGame(True)
+        startMacro(controller, startGameUpdate)
     else:
-        startGame()
+        startMacro(controller, startGame)
 
     # Close game function
-    closeGame()
+    startMacro(controller, closeGame)
     
     print("Macro finished. Removing controller")
     nx.remove_controller(controller)
