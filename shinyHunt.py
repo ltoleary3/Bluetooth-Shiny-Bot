@@ -96,11 +96,12 @@ if __name__ == "__main__":
     # Go to home menu
     nx.press_buttons(controller, [nxbt.Buttons.HOME], 0.25, 1)
     # Start game function
+    print("Starting game...")
     if args.update:
         startMacro(controller, startGameUpdate)
     else:
         startMacro(controller, startGame)
-    print("Started game")
+    print("Started game. Now closing...")
     # Close game function
     startMacro(controller, closeGame)
     
