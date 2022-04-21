@@ -131,7 +131,7 @@ A 0.25s
 if __name__ == '__main__':
 
     # Set vars
-    pokemon = args.command
+    pokemon = args.name
     checkShiny = False
     shiny = False
     template = cv2.imread('assets/{0}/{0}Appeared.jpg'.format(pokemon), 0)
