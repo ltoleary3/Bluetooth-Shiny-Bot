@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 import numpy as np
 import nxbt, argparse, cv2, threading
 from random import randint
