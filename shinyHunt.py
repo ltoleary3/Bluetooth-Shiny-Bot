@@ -183,7 +183,7 @@ if __name__ == '__main__':
     print('Video capture stream opened')
 
     # Create controller thread and start it
-    controllerThread = threading.Thread(target=useController, args=(controller, args))
+    controllerThread = threading.Thread(target=useController)
     controllerThread.start()
 
     # Loop through frames
