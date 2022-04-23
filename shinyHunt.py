@@ -1,4 +1,4 @@
-import imutils, argparse, cv2, nxbt
+import imutils, argparse, cv2, nxbt, os
 from time import sleep, time
 from threading import Thread
 from tools import pokemon, switchController, macros, frames, videostream
@@ -40,12 +40,22 @@ def useController():
             switchController.startMacro(controller, macros.closeGame)
 
 
+# Check if Standard image exists or not
+if not os.path.exists(os.path.join(os.path.dirname('prepHunt.py'), 'assets/{0}/{0}Standard.jpg'.format(args.name))):
+    # Set file path
+    if args.update:
+        command = 'prepHunt.py {} -update'.format(args.name)
+    else:
+        command = 'prepHunt.py {}'.format(args.name)
+    # Call script to setup the shiny hunt
+    os.system('prepHunt.py {}'.format(args.name))
+
 # Create pokemon object
 mon = pokemon.pokemon(name=args.name)
 # Create nxbt controller instance
 nx = nxbt.Nxbt()
 controller = switchController.setupController(nx)
-# Create input stream, change resolution if needed, and then start display
+# Create input stream and then start display
 inStream = videostream.VideoStream().start()
 sleep(2.0)
 control = Thread(target=useController, args=())
@@ -54,7 +64,7 @@ control = Thread(target=useController, args=())
 while True:
     # Get frame from the threaded video stream and resize it
     frame = inStream.read()
-    cv2.resize(frame, (mon.standardImg.shape[1], mon.standardImg.shape[0]), interpolation=cv2.INTER_AREA)
+    frame = cv2.resize(frame, (mon.standardImg.shape[1], mon.standardImg.shape[0]), interpolation=cv2.INTER_AREA)
 
     # If display flag provided, show frame
     if args.display:
