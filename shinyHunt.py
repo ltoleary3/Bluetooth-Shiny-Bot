@@ -54,7 +54,7 @@ control = Thread(target=useController, args=())
 while True:
     # Get frame from the threaded video stream and resize it
     frame = inStream.read()
-    frame = imutils.resize(frame, width=mon.standardImg.shape[1])
+    frame = imutils.resize(frame, width=mon.standardImg.shape[1], height=mon.standardImg.shape[0])
 
     # If display flag provided, show frame
     if args.display:
