@@ -25,11 +25,10 @@ nx.macro(controller, '5s\nHOME 0.25s\n0.1s')
 # Get template to find in frame and create var to store valid frames
 template = cv2.imread('assets/{0}/{0}Appeared.jpg'.format(args.name), 0)
 toStore = None
-# Set resolution of image to use
+# Scale template image based on input stream resolution
 frame = inStream.read()
-res = (frame.shape[1], frame.shape[0])
-if res[1] > 720:
-    res = (1280, 720)
+res = (int(1280/float(frame.shape[1])), int(720/float(frame.shape[0])))
+template = cv2.resize(template, res, interpolation=cv2.INTER_AREA)
 
 # Start game
 print('Starting game...', end='\r')

@@ -18,6 +18,12 @@ class pokemon:
         self.battling = True
         self.battleStartTime = time.time()
 
+    def scaleTemplate(self, width, height):
+        wRatio = 1280 / float(width)
+        hRatio = 720 / float(height)
+        res = (int(width * wRatio), int(height * hRatio))
+        self.template = cv2.resize(self.template, res, interpolation=cv2.INTER_AREA)
+
     def stopBattle(self):
         self.battling = False
     
