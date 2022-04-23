@@ -57,7 +57,7 @@ nx = nxbt.Nxbt()
 controller = switchController.setupController(nx)
 # Create input stream and then start display
 inStream = videostream.VideoStream().start()
-sleep(2.0)
+nx.macro(controller, '5s\nHOME 0.25s\n0.1s')
 control = Thread(target=useController, args=())
 
 # Main shiny hunt loop
