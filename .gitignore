@@ -1,4 +1,6 @@
 *Testing.py
+*.jpg
+!*Appeared.jpg
 testing/
 
 # Byte-compiled / optimized / DLL files
