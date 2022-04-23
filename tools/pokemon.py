@@ -1,4 +1,4 @@
-import cv2, time
+import cv2, time, os
 
 class pokemon:
     def __init__(self, name):
@@ -7,8 +7,8 @@ class pokemon:
         self.battling = False
         self.battleStartTime = 0
         self.attempts = 0
-        self.template = cv2.imread('assets/{0}/{0}Appeared.jpg'.format(pokemon), 0)
-        self.standardImg = cv2.imread('assets/{0}/{0}Standard.jpg'.format(pokemon))
+        self.template = cv2.imread(os.path.join(os.path.dirname(__file__), '..', 'assets/{0}/{0}Appeared.jpg'.format(self.name)), 0)
+        self.standardImg = cv2.imread(os.path.join(os.path.dirname(__file__), '..', 'assets/{0}/{0}Standard.jpg'.format(self.name)))
     
     def shiny(self):
         self.isShiny = True

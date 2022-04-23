@@ -6,14 +6,16 @@ from tools import pokemon, switchController, macros, frames, videostream
 
 
 ap = argparse.ArgumentParser()
-ap.add_argument('name', required=True, choices=['regice'],
+ap.add_argument('name', choices=[
+                        'regice'
+                    ],
                     help='''The name of the pokemon to hunt for. Currently available pokemon include:
                     regice''')
 ap.add_argument('-u', '--update', required=False, default=False, type=bool,
                     help='''Signifies that an update for the game is available. Change how the game launches to prevent the game from updating''')
 ap.add_argument("-d", "--display", required=False, default=False, type=bool,
     help="Whether or not video stream should be displayed")
-args = vars(ap.parse_args())
+args = ap.parse_args()
 
 
 def useController():
@@ -40,7 +42,7 @@ def useController():
 
 
 # Create pokemon object
-mon = pokemon(name=args.name)
+mon = pokemon.pokemon(name=args.name)
 # Create nxbt controller instance
 controller = switchController.setupController()
 # Create input stream, change resolution if needed, and then start display
