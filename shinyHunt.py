@@ -1,4 +1,4 @@
-import imutils, argparse, cv2, nxbt, os
+import argparse, cv2, nxbt, os
 from time import sleep, time
 from threading import Thread
 from tools import pokemon, switchController, macros, frames, videostream
