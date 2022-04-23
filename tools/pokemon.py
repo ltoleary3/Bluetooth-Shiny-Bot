@@ -19,8 +19,8 @@ class pokemon:
         self.battleStartTime = time.time()
 
     def scaleTemplate(self, frame):
-        wRatio = float(frame.shape[1]) / 1280
-        hRatio = float(frame.shape[0]) / 720
+        wRatio = float(frame.shape[1])/1280
+        hRatio = float(frame.shape[0])/720
         res = (int(self.template.size[1] * wRatio), int(self.template.size[0] * hRatio))
         self.template = cv2.resize(self.template, res, interpolation=cv2.INTER_AREA)
 
