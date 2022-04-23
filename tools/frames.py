@@ -6,7 +6,7 @@ def validFrame(rgbImage, template):
 
     # Match template image to frame
     result = cv2.matchTemplate(grayFrame, template, cv2.TM_CCOEFF_NORMED)
-    threshold = 0.8
+    threshold = 0.6
     loc = np.where(result >= threshold)
     for pt in zip(*loc[::-1]):
         return True
