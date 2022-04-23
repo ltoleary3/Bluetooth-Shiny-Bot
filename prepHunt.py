@@ -43,7 +43,6 @@ print('Game started. Now getting frame...', end='\r')
 # Get valid Frame
 while True:
     frame = inStream.read()
-    frame = cv2.resize(frame, res, interpolation=cv2.INTER_AREA)
     if args.display:
         cv2.imshow('Preparing for the shiny hunt', frame)
 
