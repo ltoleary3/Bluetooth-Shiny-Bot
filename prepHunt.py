@@ -11,6 +11,8 @@ ap.add_argument('name', choices=[
                     regice''')
 ap.add_argument('-u', '--update', required=False, default=False, type=bool,
                     help='''Signifies that an update for the game is available. Change how the game launches to prevent the game from updating''')
+ap.add_argument("-d", "--display", required=False, default=False, type=bool,
+    help="Whether or not video stream should be displayed")
 args = ap.parse_args()
 
 
@@ -19,7 +21,7 @@ nx = nxbt.Nxbt()
 controller = switchController.setupController(nx)
 # Create input stream, change resolution if needed, and then start display
 inStream = videostream.VideoStream().start()
-sleep(2.0)
+nx.macro(controller, '5s\nHOME 0.25s\n0.1s')
 # Get template to find in frame and create var to store valid frames
 template = cv2.imread('assets/{0}/{0}Appeared.jpg'.format(args.name), 0)
 toStore = None
@@ -41,6 +43,9 @@ print('Game started. Now getting frame...', end='\r')
 while True:
     frame = inStream.read()
     frame = cv2.resize(frame, res, interpolation=cv2.INTER_AREA)
+    if args.display:
+        cv2.imshow('Preparing for the shiny hunt', frame)
+
     # Check if current frame is a valid image
     if frames.validFrame(frame, template):
         toStore = frame
