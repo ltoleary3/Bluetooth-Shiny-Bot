@@ -13,39 +13,33 @@ def startMacro(controller, macroName):
             exit()
         sleep(0.25)
 
-def createNewController():
-    input('Please navigate to the "Change Grip/Order" menu, then press Enter to continue...')
-    controller = Nxbt().create_controller(
-        nxbt.PRO_CONTROLLER,
-        adapter_path=Nxbt().get_available_adapters()[0],
-        colour_body=[randint(0, 255), randint(0, 255), randint(0, 255)],
-        colour_buttons=[randint(0, 255), randint(0, 255), randint(0, 255)])
-    # Wait for connection to controller instance
-    Nxbt().wait_for_connection(controller)
-    print('Controller connected')
-    # Go to home menu
-    Nxbt().macro(controller, 'B 0.1s\n0.1s')
-    if Nxbt().state[controller]['state'] != 'connected':
-        print('Controller disconnected leaving the controller menu. This is a known issue. Please restart...')
-        exit()
-    return controller
-
-def reconnectController():
-    controller = Nxbt().create_controller(
-        nxbt.PRO_CONTROLLER,
-        reconnect_address=Nxbt().get_switch_addresses(),
-        colour_body=[randint(0, 255), randint(0, 255), randint(0, 255)],
-        colour_buttons=[randint(0, 255), randint(0, 255), randint(0, 255)])
-    # Wait for connection to last controller instance
-    Nxbt().wait_for_connection(controller)
-    print('Controller connected')
-    return controller
-
 
 def setupController():
     if (len(Nxbt().get_switch_addresses()) < 1):
         # No previous controller instance. Create new one
-        return createNewController()
+        input('Please navigate to the "Change Grip/Order" menu, then press Enter to continue...')
+        controller = Nxbt().create_controller(
+            nxbt.PRO_CONTROLLER,
+            adapter_path=Nxbt().get_available_adapters()[0],
+            colour_body=[randint(0, 255), randint(0, 255), randint(0, 255)],
+            colour_buttons=[randint(0, 255), randint(0, 255), randint(0, 255)])
+        # Wait for connection to controller instance
+        Nxbt().wait_for_connection(controller)
+        print('Controller connected')
+        # Go to home menu
+        Nxbt().macro(controller, 'B 0.1s\n0.1s')
+        if Nxbt().state[controller]['state'] != 'connected':
+            print('Controller disconnected leaving the controller menu. This is a known issue. Please restart...')
+            exit()
+        return controller
     else:
         # Get previous controller instance
-        return reconnectController()
+        controller = Nxbt().create_controller(
+            nxbt.PRO_CONTROLLER,
+            reconnect_address=Nxbt().get_switch_addresses(),
+            colour_body=[randint(0, 255), randint(0, 255), randint(0, 255)],
+            colour_buttons=[randint(0, 255), randint(0, 255), randint(0, 255)])
+        # Wait for connection to last controller instance
+        Nxbt().wait_for_connection(controller)
+        print('Controller connected')
+        return controller
