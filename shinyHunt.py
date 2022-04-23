@@ -1,7 +1,6 @@
-import imutils, argparse, cv2
+import imutils, argparse, cv2, nxbt
 from time import sleep, time
 from threading import Thread
-from nxbt import Nxbt, PRO_CONTROLLER
 from tools import pokemon, switchController, macros, frames, videostream
 
 
@@ -24,9 +23,9 @@ def useController():
         # Start game
         print('Starting game...', end='\r')
         if args.update:
-            switchController.startMacro(controller, macros.startGameUpdate)
+            switchController.startMacro(controller, macros.startGameUpdate, nx)
         else:
-            switchController.startMacro(controller, macros.startGame)
+            switchController.startMacro(controller, macros.startGame, nx)
         print('Game started. Now checking for shiny...', end='\r')
         mon.startBattle()
         mon.attempt()
@@ -44,7 +43,8 @@ def useController():
 # Create pokemon object
 mon = pokemon.pokemon(name=args.name)
 # Create nxbt controller instance
-controller = switchController.setupController()
+nx = nxbt.Nxbt()
+controller = switchController.setupController(nx)
 # Create input stream, change resolution if needed, and then start display
 inStream = videostream.VideoStream().start()
 sleep(2.0)
