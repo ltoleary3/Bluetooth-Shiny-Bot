@@ -27,7 +27,9 @@ template = cv2.imread('assets/{0}/{0}Appeared.jpg'.format(args.name), 0)
 toStore = None
 # Scale template image based on input stream resolution
 frame = inStream.read()
-res = (int(1280/float(frame.shape[1])), int(720/float(frame.shape[0])))
+wRatio = float(frame.shape[1]) / 1280
+hRatio = float(frame.shape[0]) / 720
+res = (int(template.shape[1] * wRatio), int(template.shape[0] * hRatio))
 template = cv2.resize(template, res, interpolation=cv2.INTER_AREA)
 
 # Start game

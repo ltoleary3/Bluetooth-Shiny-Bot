@@ -60,7 +60,7 @@ inStream = videostream.VideoStream().start()
 nx.macro(controller, '5s\nHOME 0.25s\n0.1s')
 control = Thread(target=useController, args=())
 # Scale template image based on input stream resolution
-mon.scaleTemplate(int(1280/float(inStream.frame.shape[1])), int(720/float(inStream.frame.shape[0])))
+mon.scaleTemplate(inStream.frame)
 
 # Main shiny hunt loop
 while True:
