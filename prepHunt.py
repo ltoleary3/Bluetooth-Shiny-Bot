@@ -66,7 +66,7 @@ while True:
 
 # Close game
 print('Closing game...', end='\r')
-switchController.startMacro(controller, macros.closeGame)
+switchController.startMacro(controller, macros.closeGame, nx)
 
 # Close windows and stop threads
 inStream.stop()
