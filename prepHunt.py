@@ -16,6 +16,7 @@ ap.add_argument("-d", "--display", required=False, default=False, type=bool,
 args = ap.parse_args()
 
 
+print('Setting up the shiny hunt...', end='\r')
 # Create nxbt controller instance
 nx = nxbt.Nxbt()
 controller = switchController.setupController(nx)
