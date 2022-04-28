@@ -17,7 +17,7 @@ ap.add_argument("-d", "--display", required=False, default=False, type=bool,
 args = ap.parse_args()
 
 
-def useController():
+def useController(controller, nx, mon):
     # If no shiny found, keep looping
     while not mon.isShiny:
         # Start game
@@ -33,11 +33,11 @@ def useController():
         # While battling, wait
         while mon.battling:
             sleep(1)
-        
+
         # If pokemon not shiny, close game
         if not mon.isShiny:
             print('Closing game...', end='\r')
-            switchController.startMacro(controller, macros.closeGame)
+            switchController.startMacro(controller, macros.closeGame, nx)
 
 
 # Check if Standard image exists or not
@@ -59,7 +59,7 @@ controller = switchController.setupController(nx)
 # Create input stream and then start display
 inStream = videostream.VideoStream().start()
 nx.macro(controller, '5s\nHOME 0.25s\n0.1s')
-control = Thread(target=useController, args=())
+control = Thread(target=useController, args=(controller, nx, mon))
 # Scale template image based on input stream resolution
 mon.scaleTemplate(inStream.frame)
 
