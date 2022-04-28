@@ -67,7 +67,6 @@ mon.scaleTemplate(inStream.frame)
 while True:
     # Get frame from the threaded video stream and resize it
     frame = inStream.read()
-    frame = cv2.resize(frame, (mon.standardImg.shape[1], mon.standardImg.shape[0]), interpolation=cv2.INTER_AREA)
 
     # If display flag provided, show frame
     if args.display:
