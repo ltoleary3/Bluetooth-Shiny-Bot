@@ -41,14 +41,15 @@ def useController():
 
 
 # Check if Standard image exists or not
-if not os.path.exists(os.path.join(os.path.dirname('prepHunt.py'), 'assets/{0}/{0}Standard.jpg'.format(args.name))):
+if not os.path.exists(os.path.join(os.path.dirname(__file__), 'assets/{0}/{0}Standard.jpg'.format(args.name))):
     # Set file path
+    command = 'prepHunt.py {}'.format(args.name)
     if args.update:
-        command = 'prepHunt.py {} -update'.format(args.name)
-    else:
-        command = 'prepHunt.py {}'.format(args.name)
+        command = command + ' -update'
+    if args.display:
+        command = command + ' -display'
     # Call script to setup the shiny hunt
-    os.system('prepHunt.py {}'.format(args.name))
+    os.system(command)
 
 # Create pokemon object
 mon = pokemon.pokemon(name=args.name)
