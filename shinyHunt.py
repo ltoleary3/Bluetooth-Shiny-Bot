@@ -112,7 +112,7 @@ while True:
 
     # Press 'Q' to stop search
     if cv2.waitKey(1) == ord('q'):
-        mon.shiny()
+        mon.shiny() # Set shiny so controller thread can close
         break
 
 # Close windows and stop threads
