@@ -17,7 +17,7 @@ ap.add_argument("-d", "--display", required=False, default=False, type=bool,
 args = ap.parse_args()
 
 
-def useController(controller, nx, mon):
+def useController():
     # If no shiny found, keep looping
     while not mon.isShiny:
         # Start game
@@ -59,7 +59,7 @@ controller = switchController.setupController(nx)
 # Create input stream and then start display
 inStream = videostream.VideoStream().start()
 nx.macro(controller, '5s\nHOME 0.25s\n0.1s')
-control = Thread(target=useController, args=(controller, nx, mon))
+control = Thread(target=useController, args=()).start()
 # Scale template image based on input stream resolution
 mon.scaleTemplate(inStream.frame)
 
