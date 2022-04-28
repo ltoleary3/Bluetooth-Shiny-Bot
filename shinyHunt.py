@@ -112,6 +112,7 @@ while True:
 
     # Press 'Q' to stop search
     if cv2.waitKey(1) == ord('q'):
+        mon.shiny()
         break
 
 # Close windows and stop threads
