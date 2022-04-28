@@ -43,7 +43,7 @@ def useController():
 # Check if Standard image exists or not
 if not os.path.exists(os.path.join(os.path.dirname(__file__), 'assets/{0}/{0}Standard.jpg'.format(args.name))):
     # Set file path
-    command = 'prepHunt.py {}'.format(args.name)
+    command = 'sudo python3 prepHunt.py {}'.format(args.name)
     if args.update:
         command = command + ' -update'
     if args.display:
