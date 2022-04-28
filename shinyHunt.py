@@ -101,7 +101,7 @@ while True:
                     break
             # Difference between images too small to be shiny, reset
             else:
-                print('Not Shiny...', end='\r')
+                print('Not Shiny...                           ', end='\r')
                 mon.stopBattle()
                 inStream.resetValidFrame()
         # Check if designated amount of time has passed without finding a valid frame
