@@ -7,7 +7,7 @@ from tools import pokemon, switchController, macros, frames, videostream
 ap = argparse.ArgumentParser()
 ap.add_argument('name', choices=[
                         'regice'
-                    ],
+                    ], type=str.lower,
                     help='''The name of the pokemon to hunt for. Currently available pokemon include:
                     regice''')
 ap.add_argument('-u', '--update', required=False, default=False, type=bool,
