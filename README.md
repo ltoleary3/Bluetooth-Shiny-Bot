@@ -152,7 +152,7 @@ When using this application to shiny hunt, there are additional options the user
 
     Example:
     ```bash
-    sudo python shinyHunt.py regice -Update
+    sudo python shinyHunt.py regice -update
     ```
 2. Display
 </br>
@@ -160,10 +160,12 @@ When using this application to shiny hunt, there are additional options the user
 
     Example:
     ```bash
-    sudo python shinyHunt.py regice -Display
+    sudo python shinyHunt.py regice -display
     ```
 
     _Note: This option can potentially reduce the performance of the app. In most cases it will not affect the ability of the program to detect Pokemon, but in lower end machines it may be worth it to NOT display the video stream in order to increase accuracy_ 
+
+    _Note: This option will not work if the user has connected to the device via ssh_ 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
