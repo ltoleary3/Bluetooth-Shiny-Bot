@@ -72,7 +72,7 @@ To get a local copy up and running follow these simple example steps.
     pip -V
     ```
 * If pip is installed, an output should be returned that is similar to: `pip 22.0.4`
-* If pip is not installed, it can be found in the [pip documentation](https://pip.pypa.io/en/stable/installation/)
+* If pip is not installed, instructions on how to install are often returned when attempting to run the `pip` command, or they can be found in the [pip documentation](https://pip.pypa.io/en/stable/installation/)
 * _Note: Its possible pip **IS** intalled and doesnt work by using the `pip` command. Usually this is the case when pip3 is installed with Python3 in which case you should use the command `pip3`_
 
 </br>
