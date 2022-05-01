@@ -75,6 +75,13 @@ To get a local copy up and running follow these simple example steps.
 * If pip is not installed, instructions on how to install are often returned when attempting to run the `pip` command, or they can be found in the [pip documentation](https://pip.pypa.io/en/stable/installation/)
 * _Note: Its possible pip **IS** intalled and doesnt work by using the `pip` command. Usually this is the case when pip3 is installed with Python3 in which case you should use the command `pip3`_
 
+4. Verify git has been installed. To do so, use the following command in the command prompt:
+    ```bash
+    git --version
+    ```
+* If git is installed, an output should be returned that is similar to: `git version 2.25.1`
+* If git is not installed, instructions on how to install are often returned when attempting to run the `git --version` command, or they can be found on the [git installation page](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+
 </br>
 
 ### Installation
