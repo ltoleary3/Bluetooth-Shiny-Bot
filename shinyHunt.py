@@ -122,6 +122,7 @@ while True:
 
     # Press 'Q' to stop search
     if cv2.waitKey(1) == ord('q'):
+        print('Closing program after {} shiny attempts...'.format(mon.attempts))
         mon.shiny() # Set shiny so controller thread can close
         break
 
