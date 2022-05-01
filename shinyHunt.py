@@ -66,7 +66,7 @@ nx.macro(controller, '5s\nL_STICK_PRESS 0.1s\n0.25s')
 # Check if game needs to be restarted
 if args.restart:
     print('Restarting game...', end='\r')
-    nx.macro(controller, '1s\nHOME 0.25s\nX 0.25s\n0.5s\nA 0.25s\n0.5s')
+    nx.macro(controller, '1s\nHOME 0.25s\n\n0.5s\nX 0.25s\n0.5s\nA 0.25s\n0.5s')
 else:
     nx.macro(controller, '1s\nHOME 0.25s\n0.25s')
 control = Thread(target=useController, args=()).start()
