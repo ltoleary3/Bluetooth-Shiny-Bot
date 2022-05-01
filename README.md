@@ -65,6 +65,7 @@ To get a local copy up and running follow these simple example steps.
     ```
 * If Python is installed, an output should be returned that is similar to: `Python 3.8.6 `
 * If a Python version is not installed, it can be found at the [Python Downloads Page](https://www.python.org/downloads/)
+* _Note: Its possible Python **IS** intalled and doesnt work by using the `python` command. Usually this is the case when Python 3 is installed in which case you should use the command `python3`
 
 3. Verify pip has been installed. This is usually installed by default with Python, but there are a few rare cases where it is not. To do so, use the following command in the command prompt:
     ```bash
@@ -72,6 +73,7 @@ To get a local copy up and running follow these simple example steps.
     ```
 * If pip is installed, an output should be returned that is similar to: `pip 22.0.4`
 * If pip is not installed, it can be found in the [pip documentation](https://pip.pypa.io/en/stable/installation/)
+* _Note: Its possible pip **IS** intalled and doesnt work by using the `pip` command. Usually this is the case when pip3 is installed with Python3 in which case you should use the command `pip3`
 
 </br>
 
