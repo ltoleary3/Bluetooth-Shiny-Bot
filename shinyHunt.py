@@ -60,12 +60,13 @@ nx = nxbt.Nxbt()
 controller = switchController.setupController(nx)
 # Create input stream and then start display
 inStream = videostream.VideoStream().start()
-# For some reason the first macro to run doesnt send a signal to the Switch for a few seconds. Because of this we run a simple macro that waits 5 seconds to press the home button which shouldnt affect any functionality
-nx.macro(controller, '5s\nHOME 0.25s\n0.25s')
+# For some reason the first macro to run doesnt send a signal to the Switch for a few seconds. Because of this, the first macro we run waits 5 seconds then operates
 # Check if game needs to be restarted
 if args.restart:
     print('Restarting game...', end='\r')
-    switchController.startMacro(controller, macros.closeGame, nx)
+    switchController.startMacro(controller, '5.0s\nHOME 0.25s\nX 0.25s\n0.5s\nA 0.25s\n0.5s\n', nx)
+else:
+    nx.macro(controller, '5s\nHOME 0.25s\n0.25s')
 control = Thread(target=useController, args=()).start()
 # Scale template image based on input stream resolution
 mon.scaleTemplate(inStream.frame)
