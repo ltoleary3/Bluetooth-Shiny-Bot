@@ -63,9 +63,10 @@ inStream = videostream.VideoStream().start()
 
 # Check if game needs to be restarted
 if args.restart:
+    print('Restarting game...', end='\r')
     switchController.startMacro(controller, macros.closeGame, nx)
-else:
-    nx.macro(controller, '5s\nHOME 0.25s\n0.25s')
+
+nx.macro(controller, '5s\nHOME 0.25s\n0.25s')
 control = Thread(target=useController, args=()).start()
 # Scale template image based on input stream resolution
 mon.scaleTemplate(inStream.frame)
